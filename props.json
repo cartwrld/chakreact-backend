@@ -1,1 +1,1 @@
-{"prompt":"elf vaping, vape, chucking clouds","steps":20,"cfg":6,"width":1024,"height":1024,"sdxl":true,"prefix":"elf_vaping_vape_chucking_clouds"}
+{"pos_prompt":"sexy christmas elf, wrapped up like a present","neg_prompt":"human","steps":20,"cfg":6,"width":1024,"height":1024,"sdxl":true,"prefix":"sexy_christmas_elf_wrapped_up_like_a_present","seed":1234567890}

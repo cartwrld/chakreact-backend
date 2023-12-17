@@ -35,6 +35,7 @@ prompt_workflow = json.load(open('simple_workflow_api.json'))
 # give some easy-to-remember names to the nodes
 chkpoint_loader_node = prompt_workflow["1"]
 prompt_pos_node = prompt_workflow["4"]
+prompt_neg_node = prompt_workflow["5"]
 empty_latent_img_node = prompt_workflow["3"]
 ksampler_node = prompt_workflow["2"]
 save_image_node = prompt_workflow["7"]
@@ -60,7 +61,8 @@ empty_latent_img_node["inputs"]["batch_size"] = 1
 # for index, prompt in enumerate(prompt_list):
 
 # set the text prompt for positive CLIPTextEncode node
-prompt_pos_node["inputs"]["text"] = props.get('prompt')
+prompt_pos_node["inputs"]["text"] = props.get('pos_prompt')
+prompt_neg_node["inputs"]["text"] = props.get('neg_prompt')
 
 # set a random seed in KSampler node
 ksampler_node["inputs"]["seed"] = random.randint(1, 18446744073709551614)
@@ -78,7 +80,7 @@ ksampler_node["inputs"]["cfg"] = props.get('cfg')
 
 # set filename prefix to be the same as prompt
 # (truncate to first 100 chars if necessary)
-fileprefix = props.get('prompt')
+fileprefix = props.get('pos_prompt')
 # fileprefix = 'chakreact'
 if len(fileprefix) > 100:
     fileprefix = fileprefix[:100]

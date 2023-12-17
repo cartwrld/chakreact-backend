@@ -28,6 +28,8 @@ export class GenerateController {
 
       let fn = await comfyui.generate(workflowData) // Wait for the filename
 
+      if (fn === '') fn = 'empty'
+
       fn = this.formatSTR(fn)
 
       console.log(fn)
@@ -37,9 +39,18 @@ export class GenerateController {
       imagepaths = await comfyui.getImagesWithName(imgfn)
       let hasBeenAdded: number = imagepaths.length
 
+      let count =0;
+
       while (hasBeenAdded !== ogImgCount + 1) {
+        if (count++ > 50) {
+          console.log('<--- NO IMG FOUND --->')
+          break
+        }
+
         console.log('<--- WAITING --->')
-        await delay(400)
+        await delay(100)
+
+
         imagepaths = await comfyui.getImagesWithName(imgfn)
         hasBeenAdded = imagepaths.length
         doneWaiting = hasBeenAdded === ogImgCount + 1
@@ -70,7 +81,6 @@ export class GenerateController {
 
         //
 
-        await delay(1000)
 
         // Log the results
         console.log('GENIMG: ---> ' + genImgPath)
