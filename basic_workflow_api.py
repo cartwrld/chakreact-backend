@@ -43,7 +43,7 @@ save_image_node = prompt_workflow["7"]
 # load the props from the front end
 props = json.load(open('props.json'))
 
-chkpoint_loader_node["inputs"]["ckpt_name"] = "dynavision_0557.safetensors"
+chkpoint_loader_node["inputs"]["ckpt_name"] = props.get('ckpt')
 # load the checkpoint that we want.
 # if props.get('sdxl'):  # This checks if props['sdxl'] is True
 #     chkpoint_loader_node["inputs"]["ckpt_name"] = "dynavision_0557.safetensors"
@@ -72,6 +72,12 @@ ksampler_node["inputs"]["steps"] = props.get('steps')
 
 # set the cfg from the user input
 ksampler_node["inputs"]["cfg"] = props.get('cfg')
+
+# set the sampler from the user input
+ksampler_node["inputs"]["sampler_name"] = props.get('sampler')
+
+# set the scheduler from the user input
+ksampler_node["inputs"]["scheduler"] = props.get('scheduler')
 
 #     # if it is the last prompt
 #     if index == 3:

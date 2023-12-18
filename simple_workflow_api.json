@@ -1,13 +1,13 @@
 {
   "1": {
     "inputs": {
-      "ckpt_name": "SD.XL\\sd_xl_base_1.0.safetensors"
+      "ckpt_name": "dynavision_v0557.safetensors"
     },
     "class_type": "CheckpointLoaderSimple"
   },
   "2": {
     "inputs": {
-      "seed": 1234567890,
+      "seed": 15191245352710935000,
       "steps": 20,
       "cfg": 7,
       "sampler_name": "euler",
@@ -42,7 +42,7 @@
   },
   "4": {
     "inputs": {
-      "text": "",
+      "text": "martian, moonlanding, space",
       "clip": [
         "1",
         1
@@ -75,7 +75,7 @@
   },
   "7": {
     "inputs": {
-      "filename_prefix": "ComfyUI",
+      "filename_prefix": "martian, moonlanding, space",
       "images": [
         "6",
         0

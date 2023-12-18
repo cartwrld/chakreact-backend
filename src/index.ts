@@ -1,14 +1,11 @@
 import * as express from 'express'
 import { AppDataSource } from './data-source'
-import * as createError from 'http-errors'
+import createError from 'http-errors'
 import * as cors from 'cors'
 import { RouteDefinition } from './decorator/RouteDefinition'
 import { GenerateController } from './controller/GenerateController'
 import { Express } from 'express'
 import * as path from 'path'
-import * as fs from 'fs'
-import { CheckImageController } from './controller/CheckImageController'
-import { join } from 'path'
 
 const port = 3004
 
@@ -33,7 +30,7 @@ AppDataSource.initialize().then(async () => {
   app.use(cors(corsOptions))
 
   // Iterate over all our controllers and register our routes
-  const controllers: any[] = [GenerateController, CheckImageController]
+  const controllers: any[] = [GenerateController]
   controllers.forEach((controller) => {
     // This is our instantiated class
     // eslint-disable-next-line new-cap

@@ -1,5 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn, Unique } from 'typeorm'
-import { IsOptional, Length, IsNotEmpty, IsIn, IsPositive, Max, Min, IsUrl } from 'class-validator'
+import { Entity, PrimaryGeneratedColumn } from 'typeorm'
+import { IsOptional, IsNotEmpty } from 'class-validator'
 
 @Entity()
 export class Workflow {

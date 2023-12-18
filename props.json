@@ -1,1 +1,1 @@
-{"pos_prompt":"sexy christmas elf, wrapped up like a present","neg_prompt":"human","steps":20,"cfg":6,"width":1024,"height":1024,"sdxl":true,"prefix":"sexy_christmas_elf_wrapped_up_like_a_present","seed":1234567890}
+{"ckpt":"dynavision_v0557.safetensors","pos_prompt":"sexy little mushroom girl","neg_prompt":"","seed":1234567890,"steps":20,"cfg":6,"sampler":"euler","scheduler":"karras","width":768,"height":1286,"sdxl":true,"prefix":"sexy_little_mushroom_girl"}
