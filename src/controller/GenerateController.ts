@@ -1,4 +1,3 @@
-import { AppDataSource } from '../data-source'
 import { NextFunction, Request, Response } from 'express'
 import { Controller } from '../decorator/Controller'
 import { Route } from '../decorator/Route'

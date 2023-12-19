@@ -27,6 +27,7 @@
       "jsonwebtoken": "^9.0.2",
       "node-fetch": "^3.3.2",
       "reflect-metadata": "^0.1.13",
+      "sharp": "^0.33.1",
       "typeorm": "^0.3.17"
    },
    "scripts": {
