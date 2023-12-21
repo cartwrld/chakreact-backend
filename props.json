@@ -1,1 +1,1 @@
-{"ckpt":"dynavision_v0557.safetensors","pos_prompt":"guy taking selfie on an iphone","neg_prompt":"","seed":1234567890,"steps":20,"cfg":6,"sampler":"euler","scheduler":"karras","width":1024,"height":1024,"sdxl":true,"prefix":"guy_taking_selfie_on_an_iphone"}
+{"ckpt":"dynavision_v0557.safetensors","pos_prompt":"sexy olympic medalist standing in glory","neg_prompt":"","seed":1234567890,"steps":20,"cfg":6,"sampler":"euler","scheduler":"karras","width":1024,"height":1024,"version":"SDXL","prefix":"sexy_olympic_medalist_standing_in_glory"}
