@@ -29,45 +29,12 @@ export class GenerateController {
   @Route('POST')
   async create (req: Request, res: Response, next: NextFunction): Promise<any> {
     const wf = req.body
-    const newWF = new Workflow(wf.version, wf.pos_prompt, wf.neg_prompt, wf.ckpt, wf.seed, wf.steps, wf.cfg,
-      wf.sampler, wf.scheduler, wf.width, wf.height
+    const newWF = new Workflow(wf.version, wf.pos_prompt, wf.neg_prompt, this.trimCKPTBeforeDB(wf.ckpt), wf.seed, wf.steps, wf.cfg,
+      wf.sampler, wf.scheduler, wf.width, wf.height, wf.prefix
     )
 
-    console.log(newWF)
-    const violations = await validate(newWF, this.validOptions)
-
-    const checkVio = async (): Promise<ValidationError[] | Workflow & ObjectLiteral> => {
-      if (violations.length) {
-        res.statusCode = 422 // Unprocessable Entity
-        return violations
-      } else {
-        console.log('no vios')
-        return await this.workflowRepo.save(newWF)
-      }
-    }
-
-    const vios = await checkVio()
-
-    console.log(vios)
-
-    console.log('Successfully added { x } to database')
     try {
       const wfObj = req.body
-      await AppDataSource.manager.save(
-        AppDataSource.manager.create(Workflow, {
-          version: wfObj.version,
-          pos_prompt: wfObj.pos_prompt,
-          neg_prompt: wfObj.neg_prompt,
-          ckpt: wfObj.ckpt,
-          seed: wfObj.seed,
-          steps: wfObj.steps,
-          cfg: wfObj.cfg,
-          sampler: wfObj.sampler,
-          scheduler: wfObj.scheduler,
-          width: wfObj.width,
-          height: wfObj.height
-        })
-      )
 
       console.log(wfObj)
 
@@ -105,6 +72,7 @@ export class GenerateController {
       }
 
       if (doneWaiting) {
+        console.log('<--- RENDERED --->')
         const genImgPath: string = imagepaths[imagepaths.length - 1]
         const sourcePath = `D:/ComfyUI/ComfyUI/output/${genImgPath}`
         const destPath = `D:/GitHub/chakreact-backend/src/images/${genImgPath}` // Ensure your project structure matches this path
@@ -118,14 +86,16 @@ export class GenerateController {
         }
         await copyFile(sourcePath, destPath)
 
-        await delay(500)
+        await delay(250)
         const moveFile = async (src: string, dest: string): Promise<void> => {
           fs.renameSync(src, dest)
         }
 
         await moveFile(sourcePath, destPath)
 
-        await delay(500)
+        await delay(250)
+
+        await this.validateAndAddWF(res, newWF, genImgPath)
 
         res.status(200).json({
           message: 'Generation successful',
@@ -139,6 +109,10 @@ export class GenerateController {
         error: error.message
       })
     }
+  }
+
+  trimCKPTBeforeDB (ckpt): string {
+    return ckpt.replace('.safetensors', '')
   }
 
   charCode (): string {
@@ -161,5 +135,24 @@ export class GenerateController {
     str = str.replaceAll(' ', '_')
     // eslint-disable-next-line @typescript-eslint/no-base-to-string
     return str + ''
+  }
+
+  async validateAndAddWF (res: any, newWF: Workflow, pathname: string): Promise<void> {
+    newWF.pathname = pathname
+
+    const violations = await validate(newWF, this.validOptions)
+
+    const checkVio = async (): Promise<ValidationError[] | Workflow & ObjectLiteral> => {
+      if (violations.length) {
+        res.statusCode = 422 // Unprocessable Entity
+        return violations
+      } else {
+        console.log('no vios')
+        return await this.workflowRepo.save(newWF)
+      }
+    }
+    const vios = await checkVio()
+    console.log(vios)
+    console.log('Successfully added { x } to database')
   }
 }

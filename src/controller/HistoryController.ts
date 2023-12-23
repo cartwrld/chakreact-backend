@@ -6,6 +6,8 @@ import * as fs from 'fs'
 import { promisify } from 'util'
 import * as sharp from 'sharp'
 import { all } from 'axios'
+import { AppDataSource } from '../data-source'
+import { Workflow } from '../entity/Workflow'
 
 const delay = promisify(setTimeout)
 
@@ -13,6 +15,8 @@ const comfyui = new ComfyUtils()
 
 @Controller('/history')
 export class HistoryController {
+  private readonly workflowRepo = AppDataSource.getRepository(Workflow)
+
   @Route('GET')
   async history (req: Request, res: Response, next: NextFunction): Promise<any> {
     try {
@@ -109,6 +113,7 @@ export class HistoryController {
       })
     }
   }
+
   @Route('GET', '/landscape')
   async landscape (req: Request, res: Response, next: NextFunction): Promise<any> {
     try {
@@ -137,5 +142,10 @@ export class HistoryController {
         error: error.message
       })
     }
+  }
+
+  @Route('GET', '/database')
+  async database (req: Request, res: Response, next: NextFunction): Promise<any> {
+    return await this.workflowRepo.find()
   }
 }

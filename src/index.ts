@@ -7,6 +7,8 @@ import { GenerateController } from './controller/GenerateController'
 import { Express } from 'express'
 import * as path from 'path'
 import { HistoryController } from './controller/HistoryController'
+import MockWorkflowCollection from './utils/MockWorkflow'
+import { Workflow } from './entity/Workflow'
 
 const port = 3004
 

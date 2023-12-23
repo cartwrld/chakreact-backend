@@ -1,11 +1,11 @@
-import { Entity, PrimaryGeneratedColumn } from 'typeorm'
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
 import { IsOptional, IsNotEmpty, IsNumber, IsString } from 'class-validator'
-
+//
 @Entity()
 export class Workflow {
   constructor (
     version: string, posPrompt?: string, negPrompt?: string, ckpt?: string, seed?: number, steps?: number, cfg?: number,
-    sampler?: string, scheduler?: string, width?: number, height?: number) {
+    sampler?: string, scheduler?: string, width?: number, height?: number, prefix?: string) {
     this.version = version || 'SDXL'
     this.pos_prompt = posPrompt || 'empty'
     this.neg_prompt = negPrompt || ''
@@ -17,51 +17,68 @@ export class Workflow {
     this.scheduler = scheduler || 'karras'
     this.width = width || 1024
     this.height = height || 1024
+    this.prefix = prefix || 'empty'
+    this.pathname = ''
   }
 
   @PrimaryGeneratedColumn()
-  @IsOptional()
     wfID: number
 
+  @Column()
   @IsString()
   @IsNotEmpty({ message: 'You must input a valid positive prompt' })
     pos_prompt: string
 
+  @Column({ nullable: true })
   @IsString()
+  @IsOptional()
     neg_prompt: string
 
+  @Column()
   @IsString()
   @IsNotEmpty({ message: 'You must input a valid ckpt' })
     ckpt: string
 
+  @Column()
   @IsNumber()
-  @IsNotEmpty({ message: 'You must input a valid seed' })
     seed: number
 
+  @Column()
   @IsNumber()
-  @IsNotEmpty({ message: 'You must input a valid step count' })
     steps: number
 
+  @Column({ type: 'float' })
   @IsNumber()
-  @IsNotEmpty({ message: 'You must input a valid cfg' })
     cfg: number
 
+  @Column()
+  @IsString()
   @IsNotEmpty({ message: 'You must input a valid sampler' })
     sampler: string
 
+  @Column()
   @IsString()
   @IsNotEmpty({ message: 'You must input a valid scheduler' })
     scheduler: string
 
+  @Column()
   @IsNumber()
-  @IsNotEmpty({ message: 'You must input a valid width' })
     width: number
 
+  @Column()
   @IsNumber()
-  @IsNotEmpty({ message: 'You must input a valid height' })
     height: number
 
+  @Column()
   @IsString()
   @IsNotEmpty({ message: 'You must input a valid version' })
     version: string
+
+  @Column()
+  @IsString()
+    prefix: string
+
+  @Column()
+  @IsString()
+    pathname: string
 }

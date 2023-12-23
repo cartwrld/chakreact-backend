@@ -1,42 +1,23 @@
--- create table pokemon
--- (
---     pokeID    integer      not null
---         primary key autoincrement,
---     pokeName  nvarchar(25) not null,
---     pokeType1 nvarchar(15) not null,
---     pokeType2 nvarchar(15),
---     gen       integer,
---     hp        integer,
---     atk       integer,
---     def       integer,
---     spatk     integer,
---     spdef     integer,
---     spd       integer,
---     sprite    nvarchar(150)
--- );
-
--- removes everything from the pokemon table
--- delete from pokemon;
-
--- calculate combat power
---SELECT pokeName, atk, def, atk + def 'combat' FROM pokemon GROUP BY pokeName ORDER BY pokeID ASC;
-
-SELECT
-    pokeName,
-    atk + def 'adCP',
-    hp + atk + def + spatk + spdef + spd 'baseCP',
-    (hp + atk + def + spatk + spdef + spd)*2 'CP'
-        FROM pokemon GROUP BY pokeName ORDER BY pokeID ASC;
-
-
--- Generate a query to show the Combat Power of the whole team
--- Combat Power is a calculated column in Pokemon
-SELECT teamName,
-       teamID,
-       SUM(p.combatpower) AS TeamCombatPower
-FROM poke_team pt
-         JOIN pokemon p ON
-            p.pokeID = pt.poke1 OR p.PokeID = pt.poke2 OR
-            p.PokeID = pt.poke3 OR p.PokeID = pt.poke4 OR
-            p.PokeID = pt.poke5 OR p.PokeID = pt.poke6
-GROUP BY teamname, teamID;
+INSERT INTO workflow VALUES (100, 'Mountain landscape, snowy peaks, blue and pink sky, golden sunlight, green valley, wildflowers, clear stream, serene, majestic, awe-inspiring, rgb','','dynavision_v0557',1114385138813349,20,6,'euler','karras',1024,1024,'SDXL','TEST');
+INSERT INTO workflow VALUES (101,'Mountain landscape, snowy peaks, blue and pink sky, golden sunlight, green valley, wildflowers, clear stream, serene, majestic, awe-inspiring, rgb','','dynavision_v0557',127182815873383,20,6,'euler','karras',1024,1024,'SDXL','TEST');
+INSERT INTO workflow VALUES (102,'architecture, psychedelic, abstract, hallucinogenic essence, (LSD, DMT, vivid colors, swirling patterns,:0.95) surreal landscapes, introspection, altered reality perception','','dynavision_v0557',1426172422034268,20,6,'euler','karras',1024,1024,'SDXL','TEST');
+INSERT INTO workflow VALUES (103,'architecture, psychedelic, abstract, hallucinogenic essence, (LSD, DMT, vivid colors, swirling patterns,:0.95) surreal landscapes, introspection, altered reality perception','','dynavision_v0557',659065424715309,20,6,'euler','karras',1024,1024,'SDXL','TEST');
+INSERT INTO workflow VALUES (104,'Visually spectacular, extraordinary EDM stage, ultra-modern, elaborate design, dazzling multicolored lasers, dynamic lights, enormous speakers, immense sound power, vibrant energy, high-energy concert','','dynavision_v0557',899832814143525,20,6,'euler','karras',1024,1024,'SDXL','TEST');
+INSERT INTO workflow VALUES (105,'Visually spectacular, extraordinary EDM stage, ultra-modern, elaborate design, dazzling multicolored lasers, dynamic lights, enormous speakers, immense sound power, vibrant energy, high-energy concert','','dynavision_v0557',1830776547341011,20,6,'euler','karras',1344,768,'SDXL','TEST');
+INSERT INTO workflow VALUES (106,'A peaceful and enchanting view of a starry night sky, filled with countless twinkling stars and a glowing moon. The night sky, clear and expansive, offers a breathtaking display of celestial beauty, with various constellations visible in the vast cosmic expanse','','dynavision_v0557',221323688519690,20,6,'euler','karras',1344,768,'SDXL','TEST');
+INSERT INTO workflow VALUES (107,'A peaceful and enchanting view of a starry night sky, filled with countless twinkling stars and a glowing moon. The night sky, clear and expansive, offers a breathtaking display of celestial beauty, with various constellations visible in the vast cosmic expanse','','dynavision_v0557',1677056065697910,20,6,'euler','karras',1024,1024,'SDXL','TEST');
+INSERT INTO workflow VALUES (108,'Clear blue and pink sky, large fluffy white clouds, upward view, sky focus, no landscapes, serene beauty, expansive sky','','dynavision_v0557',846836272136913,20,6,'euler','karras',1024,1024,'SDXL','TEST');
+INSERT INTO workflow VALUES (109,'Clear blue and pink sky, large fluffy white clouds, upward view, sky focus, no landscapes, serene beauty, expansive sky','','dynavision_v0557',1489851741816372,20,6,'euler','karras',1024,1024,'SDXL','TEST');
+INSERT INTO workflow VALUES (110,'Clear blue and pink sky, large fluffy white clouds, upward view, sky focus, no landscapes, serene beauty, expansive sky','','dynavision_v0557',110118883021885,20,6,'euler','karras',1344,768,'SDXL','TEST');
+INSERT INTO workflow VALUES (111,'Clear blue and pink sky, large fluffy white clouds, upward view, sky focus, no landscapes, serene beauty, expansive sky','','dynavision_v0557',55847884342250,20,6,'euler','karras',768,1344,'SDXL','TEST');
+INSERT INTO workflow VALUES (112,'Clear blue and pink sky, large fluffy white clouds, upward view, sky focus, no landscapes, serene beauty, expansive sky','','dynavision_v0557',488247878689491,20,6,'euler','karras',1024,1024,'SDXL','TEST');
+INSERT INTO workflow VALUES (113,'Fractal Forest festival, vibrant, elaborate setup, lasers, lights, electric atmosphere, EDM music, trees integrated, nature-technology blend, fractals','','dynavision_v0557',321414826437507,20,6,'euler','karras',1024,1024,'SDXL','TEST');
+INSERT INTO workflow VALUES (114,'Fractal Forest festival, vibrant, elaborate setup, lasers, lights, electric atmosphere, EDM music, trees integrated, nature-technology blend, fractals','','dynavision_v0557',636620578266959,20,6,'euler','karras',1024,1024,'SDXL','TEST');
+INSERT INTO workflow VALUES (115,'Fractal Forest festival, vibrant, elaborate setup, lasers, lights, electric atmosphere, EDM music, trees integrated, nature-technology blend, fractals','','dynavision_v0557',1388723143233105,20,6,'euler','karras',1344,768,'SDXL','TEST');
+INSERT INTO workflow VALUES (116,'insane EDM stage, futuristic design, crazy lasers, multicolored light beams, powerful sound, electric atmosphere, energetic, lively music festival','','dynavision_v0557',496478947060914,20,6,'euler','karras',768,1344,'SDXL','TEST');
+INSERT INTO workflow VALUES (117,'Magnificent image, dynamic EDM stage, starry night sky, futuristic design, brilliant lasers, enormous speakers, celestial allure, twinkling stars, radiant moon, surreal atmosphere, enthralling fusion,','','dynavision_v0557',68930704782995,20,6,'euler','karras',768,1344,'SDXL','TEST');
+INSERT INTO workflow VALUES (118,'Magnificent image, dynamic EDM stage, starry night sky, futuristic design, brilliant lasers, enormous speakers, celestial allure, twinkling stars, radiant moon, surreal atmosphere, enthralling fusion,','','dynavision_v0557',11660606780034,20,6,'euler','karras',1344,768,'SDXL','TEST');
+INSERT INTO workflow VALUES (119,'Magnificent image, dynamic EDM stage, starry night sky, futuristic design, brilliant lasers, enormous speakers, celestial allure, twinkling stars, radiant moon, surreal atmosphere, enthralling fusion,','','dynavision_v0557',1093944937729683,20,6,'euler','karras',1024,1024,'SDXL','TEST');
+INSERT INTO workflow VALUES (120,'Magnificent image, dynamic EDM stage, starry night sky, futuristic design, brilliant lasers, enormous speakers, celestial allure, twinkling stars, radiant moon, surreal atmosphere, enthralling fusion,','','dynavision_v0557',1754522677210911,20,6,'euler','karras',1024,1024,'SDXL','TEST');
+INSERT INTO workflow VALUES (121,'Mountain landscape, snowy peaks, blue and pink sky, golden sunlight, green valley, wildflowers, clear stream, serene, majestic, awe-inspiring, rgb','','dynavision_v0557',1090776877025440,20,6,'euler','karras',1024,1024,'SDXL','TEST');
+INSERT INTO workflow VALUES (122,'Mountain landscape, snowy peaks, blue and pink sky, golden sunlight, green valley, wildflowers, clear stream, serene, majestic, awe-inspiring, rgb','','dynavision_v0557',1654506505930591,20,6,'euler','karras',1344,768,'SDXL','TEST');
