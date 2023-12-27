@@ -5,7 +5,6 @@ import { ComfyUtils } from '../utils/ComfyUtils'
 import * as fs from 'fs'
 import { promisify } from 'util'
 import * as sharp from 'sharp'
-import { all } from 'axios'
 import { AppDataSource } from '../data-source'
 import { Workflow } from '../entity/Workflow'
 
@@ -147,5 +146,23 @@ export class HistoryController {
   @Route('GET', '/database')
   async database (req: Request, res: Response, next: NextFunction): Promise<any> {
     return await this.workflowRepo.find()
+  }
+
+  @Route('GET', '/database/square')
+  async orientationSQR (req: Request, res: Response, next: NextFunction): Promise<any> {
+    const workflows = await this.workflowRepo.find()
+    return workflows.filter(wf => wf.width === wf.height)
+  }
+
+  @Route('GET', '/database/portrait')
+  async orientationPRT (req: Request, res: Response, next: NextFunction): Promise<any> {
+    const workflows = await this.workflowRepo.find()
+    return workflows.filter(wf => wf.width < wf.height)
+  }
+
+  @Route('GET', '/database/landscape')
+  async orientationLND (req: Request, res: Response, next: NextFunction): Promise<any> {
+    const workflows = await this.workflowRepo.find()
+    return workflows.filter(wf => wf.width > wf.height)
   }
 }
