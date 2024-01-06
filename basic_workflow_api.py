@@ -43,6 +43,13 @@ save_image_node = prompt_workflow["7"]
 # load the props from the front end
 props = json.load(open('props.json'))
 
+ckptpath = ""
+
+if props.get('version') == "SDXL"
+    cpktpath = "SD.XL/" + props.get('cpkt')
+elif props.get('version') == "SD15"
+    ckptpath = "SD1.5"
+
 chkpoint_loader_node["inputs"]["ckpt_name"] = props.get('ckpt')
 # load the checkpoint that we want.
 # if props.get('sdxl'):  # This checks if props['sdxl'] is True
